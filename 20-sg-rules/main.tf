@@ -3,7 +3,7 @@ type = "ingress"
 from_port = 22
 to_port = 22
 protocol = "tcp"
-cidr_blocks = ["0.0.0.0/0"] # in this can give our laptop ip also but it may change so allowing from internet
+cidr_blocks = ["0.0.0.0/0"] # in this can give our laptop ip also but it may change in further so allowing from internet
 security_group_id = local.bastion_sg_id
 }
 
@@ -69,4 +69,22 @@ to_port = 80
 protocol = "tcp"
 source_security_group_id = local.bastion_sg_id
 security_group_id = local.backend_alb_sg_id
+}
+
+resource "aws_security_group_rule" "catalogue_bastion" {
+type = "ingress"
+from_port = 22
+to_port = 22
+protocol = "tcp"
+source_security_group_id = local.bastion_sg_id
+security_group_id = local.catalogue_sg_id
+}
+
+resource "aws_security_group_rule" "catalogue_backend_alb" {
+type = "ingress"
+from_port = 8080
+to_port = 8080
+protocol = "tcp"
+source_security_group_id = local.backend_alb_sg_id
+security_group_id = local.catalogue_sg_id
 }
