@@ -165,10 +165,10 @@ resource "aws_autoscaling_group" "catalogue" {
 
 resource "aws_autoscaling_policy" "catalogue" {
   name                   = "${var.project}-${var.environment}-catalogue"
-  scaling_adjustment     = 4
   adjustment_type        = "ChangeInCapacity"
   autoscaling_group_name = aws_autoscaling_group.catalogue.name
   policy_type            = "TargetTrackingScaling"
+  estimated_instance_warmup = 120
 
   target_tracking_configuration {
     predefined_metric_specification {
