@@ -15,3 +15,7 @@ variable "domain_name" {
     type = string
   default = "ljnag.space"
 }
+
+variable "app_version" {
+    default = "v3"
+}

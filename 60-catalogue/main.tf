@@ -32,7 +32,7 @@ connection {
   provisioner "remote-exec" {
     inline = [ 
         "chmod +x /tmp/bootstrap.sh",
-        "sudo sh /tmp/bootstrap.sh catalogue dev"
+        "sudo sh /tmp/bootstrap.sh catalogue ${var.environment} ${var.app_version}"
      ]
   }
 }
@@ -44,7 +44,7 @@ depends_on = [terraform_data.catalogue]
 }
 
 resource "aws_ami_from_instance" "catalogue" {
-  name               = "${var.project}-${var.environment}-catalogue"
+  name               = "${var.project}-${var.environment}-catalogue-${var.app_version}-${aws_instance.catalogue.id}"
   source_instance_id = aws_instance.catalogue.id
   depends_on = [aws_ec2_instance_state.catalogue]
 }
