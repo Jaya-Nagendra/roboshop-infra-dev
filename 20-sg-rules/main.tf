@@ -88,3 +88,4 @@ protocol = "tcp"
 source_security_group_id = local.backend_alb_sg_id
 security_group_id = local.catalogue_sg_id
 }
+
