@@ -151,8 +151,8 @@ resource "aws_autoscaling_group" "catalogue" {
     local.common_tags
   )
   content {
-    key                 = each.key
-    value               = each.value
+    key                 = tag.key
+    value               = tag.value
     propagate_at_launch = true
   }
   
@@ -204,6 +204,6 @@ resource "terraform_data" "catalogue-delete" {
   depends_on = [ aws_autoscaling_policy.catalogue ]
 
   provisioner "local-exec" {
-    command = "aws.ec2.terminate-instance ${aws_instance.catalogue.id}"
+    command = "aws.ec2.terminate-instances --instance-ids ${aws_instance.catalogue.id}"
   }
 }
