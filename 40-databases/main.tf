@@ -156,7 +156,7 @@ connection {
   provisioner "remote-exec" {
     inline = [ 
         "chmod +x /tmp/bootstrap.sh",
-        "sudo sh /tmp/bootstrap.sh rabbitmq dev"
+        "sudo sh /tmp/bootstrap.sh rabbitmq ${var.environment}"
      ]
   }
 }
