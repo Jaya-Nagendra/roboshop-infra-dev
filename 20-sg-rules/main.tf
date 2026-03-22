@@ -261,7 +261,6 @@ resource "aws_security_group_rule" "backend_alb_frontend" {
 }
 
 # frontend
-
 resource "aws_security_group_rule" "frontend_bastion" {
   type              = "ingress"
   from_port         = 22
