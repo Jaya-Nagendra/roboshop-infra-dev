@@ -1,5 +1,5 @@
 
-resource "aws_cloudfront_distribution" "s3_distribution" {
+resource "aws_cloudfront_distribution" "roboshop" {
   origin {
     domain_name              = "frontend-${var.environment}.${var.domain_name}"
     origin_id                = "frontend-${var.environment}.${var.domain_name}"
